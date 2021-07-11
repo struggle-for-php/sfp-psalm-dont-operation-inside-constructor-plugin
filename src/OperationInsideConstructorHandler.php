@@ -28,7 +28,7 @@ final class OperationInsideConstructorHandler implements AfterMethodCallAnalysis
             return;
         }
 
-        [$className, $method] = explode('::', $calling_method_id);
+        [, $method] = explode('::', $calling_method_id);
         if ($method !== '__construct') {
             return;
         }
@@ -49,7 +49,7 @@ final class OperationInsideConstructorHandler implements AfterMethodCallAnalysis
         if ($calling_method_id === null) {
             return ;
         }
-        [$className, $method] = explode('::', $calling_method_id);
+        [, $method] = explode('::', $calling_method_id);
 
         if ($method !== '__construct') {
             return ;
