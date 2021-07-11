@@ -15,7 +15,6 @@
     "ext-simplexml": "*",
     "nikic/php-parser": "^4.10",
     "vimeo/psalm": "^4.8",
-    "sebastian/resource-operations": "^3.0",
     "struggle-for-php/resource-operations": "^4.0"
   },
   "require-dev": {
