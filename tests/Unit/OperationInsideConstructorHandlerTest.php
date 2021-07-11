@@ -30,13 +30,15 @@ class QueryInvoker
     /** @var PDO */
     private $db;
 
-    public function __construct(PDO $db, string $query, \DateTime $date)
+    public function __construct(PDO $db, string $query, \DateTimeImmutable $date)
     {
         $this->db = $db;
         $db->getAttribute(\PDO::ATTR_ERRMODE); // should be allow.
         $this->db->query($query);
                 
         AliasDateTime::createFromImmutable($date);
+        
+        (new \SplFileInfo(__FILE__))->openFile();
     }
     
     public function __invoke(PDO $db, string $query) : void
@@ -49,7 +51,13 @@ CODE
         $this->analyzeFile(__METHOD__, new Context());
 
         $issues = IssueBuffer::getIssuesData()[__METHOD__];
+        $this->assertCount(2, $issues);
+
+        $this->assertSame('MethodOperationInsideConstructorIssue', $issues[0]->type);
         $this->assertSame('$this->db->query($query);', trim($issues[0]->snippet));
+
+        $this->assertSame('MethodOperationInsideConstructorIssue', $issues[1]->type);
+        $this->assertSame('(new \SplFileInfo(__FILE__))->openFile();', trim($issues[1]->snippet));
     }
 
     /** @test */
