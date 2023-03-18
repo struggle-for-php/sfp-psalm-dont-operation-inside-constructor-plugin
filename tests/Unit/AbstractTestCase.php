@@ -1,11 +1,7 @@
 <?php
+
 namespace SfpTest\Psalm\DontOperationInsideConstructor\Unit;
 
-use function define;
-use function defined;
-use const DIRECTORY_SEPARATOR;
-use function getcwd;
-use function ini_set;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psalm\Config;
 use Psalm\Internal\Analyzer\FileAnalyzer;
@@ -14,6 +10,13 @@ use Psalm\Internal\Provider\Providers;
 use Psalm\Internal\RuntimeCaches;
 use SfpTest\Psalm\DontOperationInsideConstructor\Unit\Internal\Provider;
 use RuntimeException;
+
+use function define;
+use function defined;
+use function getcwd;
+use function ini_set;
+
+use const DIRECTORY_SEPARATOR;
 
 class AbstractTestCase extends BaseTestCase
 {
@@ -24,7 +27,7 @@ class AbstractTestCase extends BaseTestCase
 
     protected Provider\FakeFileProvider $file_provider;
 
-    public static function setUpBeforeClass() : void
+    public static function setUpBeforeClass(): void
     {
         ini_set('memory_limit', '-1');
 
@@ -40,12 +43,12 @@ class AbstractTestCase extends BaseTestCase
         self::$src_dir_path = getcwd() . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR;
     }
 
-    protected function makeConfig() : Config
+    protected function makeConfig(): Config
     {
         return new TestConfig();
     }
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -69,7 +72,7 @@ class AbstractTestCase extends BaseTestCase
         $config->initializePlugins($this->project_analyzer);
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         RuntimeCaches::clearAll();
     }

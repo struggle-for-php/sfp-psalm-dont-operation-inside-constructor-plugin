@@ -5,19 +5,7 @@
     name="sfp-psalm-dont-operation-inside-constructor-plugin"
 >
     <config name="installed_paths" value="../../slevomat/coding-standard"/>
-    <rule ref="PSR2" />
-    <!-- Forbid usage of a function or a class constant via fallback global name -->
-    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
-        <properties>
-            <property name="allowFallbackGlobalConstants" type="boolean" value="false"/>
-            <property name="allowFallbackGlobalFunctions" type="boolean" value="false"/>
-            <property name="allowFullyQualifiedGlobalConstants" type="boolean" value="true"/>
-            <property name="allowFullyQualifiedGlobalFunctions" type="boolean" value="true"/>
-            <property name="allowFullyQualifiedGlobalClasses" type="boolean" value="true"/>
-        </properties>
-        <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
-    </rule>
-
+    <rule ref="PSR12" />
     <file>src/</file>
     <file>tests/Unit/</file>
 

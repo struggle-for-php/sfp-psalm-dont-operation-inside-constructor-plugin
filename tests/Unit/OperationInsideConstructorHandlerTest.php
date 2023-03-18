@@ -61,7 +61,7 @@ CODE
     }
 
     /** @test */
-    public function operationFunctionCall() : void
+    public function operationFunctionCall(): void
     {
         $this->addFile(
             __METHOD__,
