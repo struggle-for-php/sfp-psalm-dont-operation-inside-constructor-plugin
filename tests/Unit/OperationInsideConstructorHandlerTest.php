@@ -33,7 +33,7 @@ class QueryInvoker
     public function __construct(PDO $db, string $query, \DateTimeImmutable $date)
     {
         $this->db = $db;
-        $db->getAttribute(\PDO::ATTR_ERRMODE); // should be allow.
+        $db->getAttribute(\PDO::ATTR_ERRMODE); // should be allowed.
         $this->db->query($query);
                 
         AliasDateTime::createFromImmutable($date);
@@ -61,7 +61,7 @@ CODE
     }
 
     /** @test */
-    public function operationFunctionCall() : void
+    public function operationFunctionCall(): void
     {
         $this->addFile(
             __METHOD__,

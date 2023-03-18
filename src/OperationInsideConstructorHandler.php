@@ -12,6 +12,7 @@ use Psalm\Plugin\EventHandler\Event\AfterEveryFunctionCallAnalysisEvent;
 use Psalm\Plugin\EventHandler\Event\AfterMethodCallAnalysisEvent;
 use Sfp\Psalm\DontOperationInsideConstructor\Issue\FunctionOperationInsideConstructorIssue;
 use Sfp\Psalm\DontOperationInsideConstructor\Issue\MethodOperationInsideConstructorIssue;
+
 use function explode;
 use function sprintf;
 

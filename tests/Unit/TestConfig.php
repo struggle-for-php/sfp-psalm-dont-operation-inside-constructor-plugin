@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SfpTest\Psalm\DontOperationInsideConstructor\Unit;
 
-use const DIRECTORY_SEPARATOR;
-use function getcwd;
 use Psalm\Config;
 use Sfp\Psalm\DontOperationInsideConstructor\Plugin;
 use Psalm\Internal\IncludeCollector;
+
+use function getcwd;
+
+use const DIRECTORY_SEPARATOR;
 
 /**
  * borrowed from psalm
@@ -47,7 +49,7 @@ class TestConfig extends Config
         $this->collectPredefinedFunctions();
     }
 
-    protected function getContents() : string
+    protected function getContents(): string
     {
         return '<?xml version="1.0"?>
 <psalm>

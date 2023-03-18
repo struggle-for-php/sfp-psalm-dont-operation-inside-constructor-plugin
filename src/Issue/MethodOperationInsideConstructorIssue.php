@@ -8,5 +8,4 @@ use Psalm\Issue\PluginIssue;
 
 final class MethodOperationInsideConstructorIssue extends PluginIssue
 {
-
 }

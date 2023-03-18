@@ -1,4 +1,5 @@
 <?php
+
 namespace SfpTest\Psalm\DontOperationInsideConstructor\Unit\Internal\Provider;
 
 use function microtime;
@@ -20,12 +21,12 @@ class FakeFileProvider extends \Psalm\Internal\Provider\FileProvider
      */
     public $fake_file_times = [];
 
-    public function fileExists(string $file_path) : bool
+    public function fileExists(string $file_path): bool
     {
         return isset($this->fake_files[$file_path]) || parent::fileExists($file_path);
     }
 
-    public function getContents(string $file_path, bool $go_to_source = false) : string
+    public function getContents(string $file_path, bool $go_to_source = false): string
     {
         if (!$go_to_source && isset($this->temp_files[strtolower($file_path)])) {
             return $this->temp_files[strtolower($file_path)];
@@ -38,12 +39,12 @@ class FakeFileProvider extends \Psalm\Internal\Provider\FileProvider
         return parent::getContents($file_path);
     }
 
-    public function setContents(string $file_path, string $file_contents) : void
+    public function setContents(string $file_path, string $file_contents): void
     {
         $this->fake_files[$file_path] = $file_contents;
     }
 
-    public function getModifiedTime(string $file_path) : int
+    public function getModifiedTime(string $file_path): int
     {
         if (isset($this->fake_file_times[$file_path])) {
             return $this->fake_file_times[$file_path];
@@ -55,7 +56,7 @@ class FakeFileProvider extends \Psalm\Internal\Provider\FileProvider
     /**
      * @psalm-suppress InvalidPropertyAssignmentValue because microtime is needed for cache busting
      */
-    public function registerFile(string $file_path, string $file_contents) : void
+    public function registerFile(string $file_path, string $file_contents): void
     {
         $this->fake_files[$file_path] = $file_contents;
         $this->fake_file_times[$file_path] = microtime(true);
@@ -66,9 +67,9 @@ class FakeFileProvider extends \Psalm\Internal\Provider\FileProvider
      *
      * @return list<string>
      */
-    public function getFilesInDir(string $dir_path, array $file_extensions) : array
+    public function getFilesInDir(string $dir_path, array $file_extensions, callable $filter = null): array
     {
-        $file_paths = parent::getFilesInDir($dir_path, $file_extensions);
+        $file_paths = parent::getFilesInDir($dir_path, $file_extensions, $filter);
 
         foreach ($this->fake_files as $file_path => $_) {
             if (strpos(strtolower($file_path), strtolower($dir_path)) === 0) {
