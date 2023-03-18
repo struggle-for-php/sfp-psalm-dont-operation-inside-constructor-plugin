@@ -57,7 +57,7 @@ class AbstractTestCase extends BaseTestCase
 
         $providers = new Providers(
             $this->file_provider,
-            new Provider\FakeParserCacheProvider()
+            new Provider\FakeParserCacheProvider($config)
         );
 
         $this->project_analyzer = new ProjectAnalyzer(
@@ -65,7 +65,7 @@ class AbstractTestCase extends BaseTestCase
             $providers
         );
 
-        $this->project_analyzer->setPhpVersion('7.4');
+        $this->project_analyzer->setPhpVersion('7.4', 'tests');
         $config->initializePlugins($this->project_analyzer);
     }
 
