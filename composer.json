@@ -22,7 +22,7 @@
     "phpunit/phpunit": "^10",
     "infection/infection": "^0.26.19",
     "slevomat/coding-standard": "^8",
-    "doctrine/coding-standard": "^10"
+    "doctrine/coding-standard": "^12"
   },
   "extra": {
     "psalm" : {
